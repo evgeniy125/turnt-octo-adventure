@@ -1,0 +1,30 @@
+﻿@model UserRoleViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+        <h4>User @Model.UserName</h4>
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(m => m.UserId)
+
+        @Html.DropDownListFor(m => m.SelectedRoleId, Model.Roles)
+
+        <input type="submit" value="Save" class="btn btn-default" />
+
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,27 @@
+﻿@model IPagedList<User>
+
+
+<div id="userList">
+
+    @foreach (var item in Model)
+    {
+        <div>
+            <h4>@item.UserName</h4>
+            <div>
+                @item.Email @item.CreateDate
+
+                @if (User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("Edit role", "Edit", new { id = item.Id })
+                }
+                @Html.ActionLink("Posts", "Index", "Posts", new { id = item.Id }, null)
+            </div>
+        </div>
+    }
+
+    <div class="pagedList">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+        PagedListRenderOptions.MinimalWithItemCountText)
+    </div>
+</div>
+
