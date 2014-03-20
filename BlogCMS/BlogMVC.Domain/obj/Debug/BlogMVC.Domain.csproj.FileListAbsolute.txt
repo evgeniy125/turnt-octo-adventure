@@ -1,0 +1,17 @@
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\bin\Debug\BlogMVC.Domain.dll.config
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\bin\Debug\BlogMVC.Domain.dll
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\bin\Debug\BlogMVC.Domain.pdb
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\bin\Debug\EntityFramework.dll
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\bin\Debug\WebActivator.dll
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\bin\Debug\EntityFramework.xml
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\obj\Debug\BlogMVC.Domain.dll
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\obj\Debug\BlogMVC.Domain.pdb
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\bin\Debug\GenericRepository.dll
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\bin\Debug\GenericRepository.EF.dll
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC.Domain\obj\Debug\BlogMVC.Domain.csprojResolveAssemblyReference.cache
