@@ -1,4 +1,4 @@
-﻿@model BlogMVC.Models.Post
+﻿@model Post
 @using Microsoft.AspNet.Identity;
 
 @{
@@ -16,7 +16,6 @@
         <h4>Post</h4>
         <hr />
         @Html.ValidationSummary(true)
-        <!--<input type="hidden" name="User" value=@ViewBag.UserId />-->
 
         <div class="form-group">
             @Html.LabelFor(model => model.Title, new { @class = "control-label col-md-2" })
@@ -34,13 +33,10 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CreateDate, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CreateDate)
-                @Html.ValidationMessageFor(model => model.CreateDate)
-            </div>
-        </div>
+        @{
+            var datetime = DateTime.Now;
+        }
+        <input type="hidden" name="CreateDate" value="@DateTime.Now" />
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
@@ -48,10 +44,8 @@
             </div>
         </div>
     </div>
-    @User.Identity.Name
 }
 
 <div>
-    @*@Html.ActionLink("Back to List", "Index", new { @ViewBag.UserId })*@
-    @Html.ActionLink("Back to List", "Index", "Posts", new { id = User.Identity.GetUserId() }, null)
+    @Html.ActionLink("Back to List", "Index", new { id = ViewBag.UserId})
 </div>

@@ -1,4 +1,6 @@
-﻿@model IEnumerable<Post>
+﻿@using Microsoft.AspNet.Identity;
+
+@model IEnumerable<Post>
 
 <table class="table">
     <tr>
@@ -27,9 +29,15 @@
                 @Html.DisplayFor(modelItem => item.CreateDate)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.PostId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.PostId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.PostId })
+                @if (User.IsInRole("writer") && Model.FirstOrDefault().UserId == User.Identity.GetUserId()
+                    || User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("Edit", "Edit", new { id = item.PostId }) @: |
+                    @Html.ActionLink("Details", "Details", new { id = item.PostId }) @: |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.PostId })
+                }
+                else { @Html.ActionLink("Details", "Details", new { id = item.PostId }) }
+
             </td>
         </tr>
     }

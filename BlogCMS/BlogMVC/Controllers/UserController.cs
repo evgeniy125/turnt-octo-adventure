@@ -11,17 +11,21 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
 using System.Web.Security;
 using PagedList;
+using BlogMVC.Domain;
+using BlogMVC.DataAccess;
+//using BlogMVC.DataAccessDbFirst;
 
 namespace BlogMVC.Controllers
 {
     [Authorize]
     public class UserController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private UserRepository userRepo = new UserRepository();
+        private RoleRepository roleRepo = new RoleRepository();
 
         public ActionResult Index(int page = 1)
         {
-            return View(db.Users.OrderBy(u => u.UserName).ToPagedList(page, 5));
+            return View(userRepo.All.OrderBy(u => u.UserName).ToPagedList(page, 5));
         }
 
         [Authorize(Roles="admin")]
@@ -31,10 +35,10 @@ namespace BlogMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
+            User user = userRepo.Find(id);
 
-            var model = new UserRoleViewModel(db.Roles.ToList()) { UserId = user.Id, UserName = user.UserName,
-                SelectedRoleId = user.Roles.Single().Role.Id };
+            var model = new UserRoleViewModel() { UserId = user.Id, UserName = user.UserName,
+                SelectedRoleId = user.Roles.Single().Role.Id, Roles = roleRepo.All.ToList() };
 
             if (user == null)
             {
@@ -48,18 +52,18 @@ namespace BlogMVC.Controllers
         [Authorize(Roles = "admin")]
         public ActionResult Edit(UserRoleViewModel viewModel)
         {
-            var user = db.Users.Find(viewModel.UserId);
+            var user = userRepo.Find(viewModel.UserId);
 
             if (user.Roles.Count != 1)
                 return null;
-            var role = db.Roles.Where(r => r.Id == viewModel.SelectedRoleId).Single();
+            var role = roleRepo.FindBy(r => r.Id == viewModel.SelectedRoleId).Single();
             user.Roles.Clear();
             user.Roles.Add(new IdentityUserRole { UserId = user.Id, RoleId = role.Id });
 
             if (ModelState.IsValid)
             {
-                db.Entry(user).State = EntityState.Modified;
-                db.SaveChanges();
+                userRepo.EditUser(user);
+                userRepo.Save();
                 return RedirectToAction("Index");
             }
             return View(viewModel);
@@ -69,7 +73,8 @@ namespace BlogMVC.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                userRepo.Dispose();
+                roleRepo.Dispose();
             }
             base.Dispose(disposing);
         }

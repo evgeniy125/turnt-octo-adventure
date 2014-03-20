@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using BlogMVC.Models;
+using BlogMVC.Domain;
+using BlogMVC.DataAccess;
 
 namespace BlogMVC.Controllers
 {
@@ -16,7 +18,7 @@ namespace BlogMVC.Controllers
     public class AccountController : Controller
     {
         public AccountController()
-            : this(new UserManager<User>(new UserStore<User>(new ApplicationDbContext())))
+            : this(new UserManager<User>(new UserStore<User>(new BlogDbContext())))
         {
         }
 

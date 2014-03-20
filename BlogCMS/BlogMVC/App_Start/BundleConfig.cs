@@ -27,6 +27,9 @@ namespace BlogMVC
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/PagedList.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/layout").Include(
+            "~/Scripts/layout.js"));
         }
     }
 }

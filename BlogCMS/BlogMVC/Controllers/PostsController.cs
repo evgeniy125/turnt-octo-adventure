@@ -8,17 +8,22 @@ using System.Web;
 using System.Web.Mvc;
 using BlogMVC.Models;
 using Microsoft.AspNet.Identity;
+using BlogMVC.DataAccess;
+//using BlogMVC.DataAccessDbFirst;
+using DataAccessDbFirst;
+using BlogMVC.Domain;
+using GenericRepository.EF;
 
 namespace BlogMVC.Controllers
 {
     [Authorize]
     public class PostsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        private PostRepository postRepo = new PostRepository();
+        private UserRepository userRepo = new UserRepository();
         public ActionResult Index([Bind(Prefix = "id")] string userId)
         {
-            var user = db.Users.Find(userId);
+            var user = userRepo.Find(userId);
             if (user != null)
                 return View(user);
             return HttpNotFound();
@@ -30,7 +35,7 @@ namespace BlogMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+            Post post = postRepo.Find(id);
             if (post == null)
             {
                 return HttpNotFound();
@@ -45,6 +50,7 @@ namespace BlogMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            ViewBag.UserId = userId;
             return View();
         }
 
@@ -59,8 +65,8 @@ namespace BlogMVC.Controllers
             }
             if (ModelState.IsValid)
             {
-                db.Posts.Add(post);
-                db.SaveChanges();
+                postRepo.Add(post);
+                postRepo.Save();
                 return RedirectToAction("Index", new { id = post.UserId });
             }
 
@@ -74,12 +80,12 @@ namespace BlogMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+            Post post = postRepo.Find(id);
             if (post == null)
             {
                 return HttpNotFound();
             }
-            if (User.IsInRole("writer") && post.User.Id != User.Identity.GetUserId())
+            if (User.IsInRole("writer") && post.UserId != User.Identity.GetUserId())
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -98,8 +104,8 @@ namespace BlogMVC.Controllers
                 {
                     return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
                 }
-                db.Entry(post).State = EntityState.Modified;
-                db.SaveChanges();
+                postRepo.EditPost(post);
+                postRepo.Save();
                 return RedirectToAction("Index", new {id = post.UserId});
             }
             return View(post);
@@ -112,7 +118,7 @@ namespace BlogMVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Post post = db.Posts.Find(id);
+            Post post = postRepo.Find(id);
             if (post == null)
             {
                 return HttpNotFound();
@@ -130,21 +136,24 @@ namespace BlogMVC.Controllers
         [Authorize(Roles = "admin,writer")]
         public ActionResult DeleteConfirmed(int id)
         {
-            Post post = db.Posts.Find(id);
+            Post post = postRepo.Find(id);
             if (User.IsInRole("writer") && post.UserId != User.Identity.GetUserId())
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            db.Posts.Remove(post);
-            db.SaveChanges();
-            return RedirectToAction("Index", new {id = post.UserId});
+
+            string userId = post.UserId;
+            postRepo.Delete(post);
+            postRepo.Save();
+            return RedirectToAction("Index", new { id = userId });
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                postRepo.Dispose();
+                userRepo.Dispose();
             }
             base.Dispose(disposing);
         }
