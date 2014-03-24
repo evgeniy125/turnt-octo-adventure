@@ -1,0 +1,64 @@
+﻿@model IPagedList<BlogMVC.Domain.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var mod = Model.FirstOrDefault();
+}
+
+<h2>Blogs for users</h2>
+
+<table class="table table-hover" > 
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => mod.UserName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => mod.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => mod.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => mod.Bio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => mod.CreateDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Bio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateDate)
+            </td>
+            <td>
+                @if (User.IsInRole("admin"))
+                {
+                    @Html.ActionLink("Edit role", "Edit", new { id = item.Id })
+                }
+                @Html.ActionLink("Posts", "Index", "Posts", new { id = item.Id }, null)
+            </td>
+        </tr>
+    }
+</table>
+
+<div class="pagedList">
+    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
+        PagedListRenderOptions.ClassicPlusFirstAndLast)
+</div>
+

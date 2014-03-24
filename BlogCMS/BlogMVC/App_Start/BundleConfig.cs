@@ -30,6 +30,9 @@ namespace BlogMVC
 
             bundles.Add(new ScriptBundle("~/bundles/layout").Include(
             "~/Scripts/layout.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/layoutcss").Include(
+            "~/Content/Custom/Custom.css"));
         }
     }
 }

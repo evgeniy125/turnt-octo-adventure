@@ -60,9 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlogDbContext.cs" />
-    <Compile Include="Migrations\201403190904525_create.cs" />
-    <Compile Include="Migrations\201403190904525_create.Designer.cs">
-      <DependentUpon>201403190904525_create.cs</DependentUpon>
+    <Compile Include="Migrations\201403210745234_create.cs" />
+    <Compile Include="Migrations\201403210745234_create.Designer.cs">
+      <DependentUpon>201403210745234_create.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PostRepository.cs" />
@@ -81,8 +81,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201403190904525_create.resx">
-      <DependentUpon>201403190904525_create.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201403210745234_create.resx">
+      <DependentUpon>201403210745234_create.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

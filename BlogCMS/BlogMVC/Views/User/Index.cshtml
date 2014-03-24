@@ -1,14 +1,14 @@
 ﻿@model IPagedList<BlogMVC.Domain.User>
 
-@{
-    ViewBag.Title = "Index";
+@{ 
+    ViewBag.Title = "Blogs for users";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var mod = Model.FirstOrDefault();
 }
 
 <h2>Blogs for users</h2>
 
-<table class="table table-hover" > 
+<table class="posts-table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => mod.UserName)
@@ -56,9 +56,7 @@
         </tr>
     }
 </table>
-
-<div class="pagedList">
+<div id="pagedList">
     @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
         PagedListRenderOptions.ClassicPlusFirstAndLast)
 </div>
-

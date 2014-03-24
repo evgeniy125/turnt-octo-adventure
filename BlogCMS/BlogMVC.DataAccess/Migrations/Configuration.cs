@@ -4,7 +4,6 @@ namespace BlogMVC.DataAccess.Migrations
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using System;
-    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -27,13 +26,14 @@ namespace BlogMVC.DataAccess.Migrations
             {
                 var user = new User
                 {
-                    UserName = "evgeniy", CreateDate = DateTime.Now
-                //    Posts = new List<Post> {
-                //new Post {Title = "Hello", Content = "Hello world", CreateDate = DateTime.Now}}
+                    UserName = "evgeniy",
+                    CreateDate = DateTime.Now
+                    //    Posts = new List<Post> {
+                    //new Post {Title = "Hello", Content = "Hello world", CreateDate = DateTime.Now}}
                 };
                 var user2 = new User { UserName = "stepan", CreateDate = DateTime.Now };
 
-                //userManager.Create(user, "password");
+                userManager.Create(user, "password");
                 userManager.Create(user2, "password");
                 roleManager.Create(new IdentityRole { Name = "admin" });
                 roleManager.Create(new IdentityRole { Name = "writer" });
@@ -46,10 +46,11 @@ namespace BlogMVC.DataAccess.Migrations
             {
                 var user = new User
                 {
-                    UserName = "user" + i.ToString(), CreateDate = DateTime.Now
+                    UserName = "user" + i.ToString(),
+                    CreateDate = DateTime.Now
                 };
                 userManager.Create(user, "password");
-                //userManager.AddToRole(user.Id, "reader");
+                userManager.AddToRole(user.Id, "reader");
             }
         }
     }

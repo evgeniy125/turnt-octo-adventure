@@ -25,7 +25,7 @@
 
         foreach (var link in links)
         {
-            @: <li>@Html.ActionLink(@link.LinkText, "") </li>
+            @: <li class="sidebar-item">@Html.ActionLink(@link.LinkText, "") </li>
         }
 
         
@@ -40,7 +40,7 @@
                     @: <li>@Html.ActionLink(@link.LinkText, "") </li>
                 }
             }
-            @: <li>@Html.ActionLink("Create", "Create", null, new {id = ViewBag.Id}) </li>
+            @: <li class="sidebar-item">@Html.ActionLink("Create", "Create", null, new {id = ViewBag.Id}) </li>
         }
         
     }
