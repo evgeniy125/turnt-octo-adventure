@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Content, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Content)
+                @Html.TextAreaFor(model => model.Content)
                 @Html.ValidationMessageFor(model => model.Content)
             </div>
         </div>
@@ -54,3 +54,16 @@
 <div>
     @Html.ActionLink("Back to List", "Index", new { id = Model.UserId})
 </div>
+
+@section scripts {
+    <link rel="stylesheet" href="@Url.Content("../../Content/Custom/jquery-ui-1.10.4.custom.css")" />
+    <script src="@Url.Content("../../Scripts/jquery-ui-1.10.4.custom.js")"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $("#CreateDate").datepicker({
+                dateFormat: "dd/mm/yy"
+            })
+        })
+    </script>
+}

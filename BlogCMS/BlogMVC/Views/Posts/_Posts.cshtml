@@ -2,6 +2,7 @@
 
 @model IEnumerable<Post>
 
+
 <table class="table">
     <tr>
         <th>
@@ -18,7 +19,7 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr class="table_row">
             <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
@@ -34,7 +35,8 @@
                 {
                     @Html.ActionLink("Edit", "Edit", new { id = item.PostId }) @: |
                     @Html.ActionLink("Details", "Details", new { id = item.PostId }) @: |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.PostId })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.PostId })*@
+                    <input class="deleteLink" type="button" value="Delete" onclick="deletePost(this)" data-postId="@item.PostId" />
                 }
                 else { @Html.ActionLink("Details", "Details", new { id = item.PostId }) }
 
@@ -43,3 +45,23 @@
     }
 
 </table>
+<script type="text/javascript" src="@Url.Content("~/Scripts/dataProcessing.js")"></script>
+<script type="text/javascript">
+
+    function deletePost(input) {
+        var postId = $(input).attr("data-postId");
+        var row = $(input).closest(".table_row");
+        $.ajax({
+            type: "Post",
+            url: "../../Posts/Delete/" + postId,
+            success: function () {
+                row.remove(".table_row");
+            },
+            error: function () {
+                alert('error');
+            }
+
+        })
+    }
+
+</script>

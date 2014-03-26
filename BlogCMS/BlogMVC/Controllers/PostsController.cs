@@ -132,7 +132,6 @@ namespace BlogMVC.Controllers
 
 
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin,writer")]
         public ActionResult DeleteConfirmed(int id)
         {

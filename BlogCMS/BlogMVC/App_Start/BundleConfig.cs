@@ -28,8 +28,8 @@ namespace BlogMVC
                       "~/Content/site.css",
                       "~/Content/PagedList.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/layout").Include(
-            "~/Scripts/layout.js"));
+            bundles.Add(new ScriptBundle("~/bundles/dataProcessing").Include(
+            "~/Scripts/dataProcessing.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/layoutcss").Include(
             "~/Content/Custom/Custom.css"));
