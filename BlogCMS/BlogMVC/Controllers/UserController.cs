@@ -13,6 +13,7 @@ using System.Web.Security;
 using PagedList;
 using BlogMVC.Domain;
 using BlogMVC.DataAccess;
+using BlogMVC.Domain.Models;
 //using BlogMVC.DataAccessDbFirst;
 
 namespace BlogMVC.Controllers
@@ -26,6 +27,11 @@ namespace BlogMVC.Controllers
         public ActionResult Index(int page = 1)
         {
             return View(userRepo.All.OrderBy(u => u.UserName).ToPagedList(page, 5));
+        }
+
+        public JsonResult GetUsers()
+        {
+            return Json(userRepo.SelectForUserRoleModel(), JsonRequestBehavior.AllowGet);
         }
 
         [Authorize(Roles="admin")]
@@ -47,8 +53,12 @@ namespace BlogMVC.Controllers
             return View(model);
         }
 
+        public JsonResult GetRoles()
+        {
+            return Json(roleRepo.All, JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [Authorize(Roles = "admin")]
         public ActionResult Edit(UserRoleViewModel viewModel)
         {

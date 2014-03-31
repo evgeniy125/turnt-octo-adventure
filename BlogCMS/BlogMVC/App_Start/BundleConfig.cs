@@ -45,6 +45,8 @@ namespace BlogMVC
             "~/Content/kendo/kendo.bootstrap.min.css"));
 
             bundles.IgnoreList.Clear();
+
+            BundleTable.EnableOptimizations = false;
         }
     }
 }

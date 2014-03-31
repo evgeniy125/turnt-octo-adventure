@@ -10,5 +10,6 @@ namespace BlogMVC.DataAccess
 {
     public class RoleRepository : Repository<BlogDbContext, IdentityRole>
     {
+
     }
 }

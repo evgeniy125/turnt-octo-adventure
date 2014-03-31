@@ -1,62 +1,23 @@
-﻿@model IPagedList<BlogMVC.Domain.User>
+﻿@model dynamic
 
-@{ 
+@{
     ViewBag.Title = "Blogs for users";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var mod = Model.FirstOrDefault();
 }
 
 <h2>Blogs for users</h2>
 
-<table class="posts-table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => mod.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => mod.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => mod.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => mod.Bio)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => mod.CreateDate)
-        </th>
-        <th></th>
-    </tr>
+<div id="users-grid"></div>
 
-    @foreach (var item in Model)
+<script type="text/x-kendo-template" id="template">
+    @{if (User.IsInRole("admin"))
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.UserName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Bio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreateDate)
-            </td>
-            <td>
-                @if (User.IsInRole("admin"))
-                {
-                    @Html.ActionLink("Edit role", "Edit", new { id = item.Id })
-                }
-                @Html.ActionLink("Posts", "Index", "Posts", new { id = item.Id }, null)
-            </td>
-        </tr>
+        <a href="@Url.Action("Edit")/#: UserId #">Edit Role</a>
     }
-</table>
-<div id="pagedList">
-    @Html.PagedListPager(Model, page => Url.Action("Index", new { page }),
-        PagedListRenderOptions.ClassicPlusFirstAndLast)
-</div>
+    <a href="@Url.Action("Index", "Posts")/Index/#: UserId #">Posts</a>
+    }
+</script>
+
+@section scripts {
+    <script type="text/javascript" src="@Url.Content("~/Scripts/dataProcessing.js")"></script>
+}

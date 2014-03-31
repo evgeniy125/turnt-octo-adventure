@@ -36,9 +36,10 @@
                     @Html.ActionLink("Edit", "Edit", new { id = item.PostId }) @: |
                     @Html.ActionLink("Details", "Details", new { id = item.PostId }) @: |
                     @*@Html.ActionLink("Delete", "Delete", new { id = item.PostId })*@
-                    <input class="deleteLink" type="button" value="Delete" data-postId="@item.PostId" />
+                    <input class="deleteLink" type="button" value="Delete" data-postid="@item.PostId" />
                 }
-                else { @Html.ActionLink("Details", "Details", new { id = item.PostId }) }
+                else
+                { @Html.ActionLink("Details", "Details", new { id = item.PostId }) }
 
             </td>
         </tr>
@@ -48,21 +49,6 @@
 <script type="text/javascript" src="@Url.Content("~/Scripts/dataProcessing.js")"></script>
 <script type="text/javascript">
 
-    //function deletePost(input) {
-    //    var postId = $(input).attr("data-postId");
-    //    var row = $(input).closest(".table_row");
-    //    $.ajax({
-    //        type: "Post",
-    //        url: "../../Posts/Delete/" + postId,
-    //        success: function () {
-    //            row.hide(".table_row");
-    //        },
-    //        error: function () {
-    //            alert('error');
-    //        }
-
-    //    })
-    //}
 
     $(function () {
         $("#post-grid").kendoGrid({
@@ -73,19 +59,19 @@
                 $(".deleteLink").click(function (e) {
                     var postId = $(this).attr("data-postId");
                     var link = $(this);
-                        $.ajax({
-                            type: "Post",
-                            url: "../../Posts/Delete/" + postId,
-                            success: function () {
-                                var grid = $("#post-grid").data("kendoGrid");
-                                var dataItem = grid.dataItem(link.closest("tr"));
-                                grid.dataSource.remove(dataItem);
-                            },
-                            error: function () {
-                                alert('error');
-                            }
+                    $.ajax({
+                        type: "Post",
+                        url: "../../Posts/Delete/" + postId,
+                        success: function () {
+                            var grid = $("#post-grid").data("kendoGrid");
+                            var dataItem = grid.dataItem(link.closest("tr"));
+                            grid.dataSource.remove(dataItem);
+                        },
+                        error: function () {
+                            alert('error');
+                        }
 
-                        })
+                    })
                 })
             }
         });

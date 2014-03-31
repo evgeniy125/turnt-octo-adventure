@@ -1,0 +1,85 @@
+﻿@model dynamic
+
+@{ 
+    ViewBag.Title = "Blogs for users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Blogs for users</h2>
+
+<div id="users-grid"></div>
+
+<script type="text/x-kendo-template" id="template">
+    @{if (User.IsInRole("admin"))
+        {
+            <a href="@Url.Action("Edit")/#: UserId #" >Edit Role</a>
+        }
+        <a href="@Url.Action("Index", "Posts")/Index/#: UserId #">Posts</a>
+    }
+</script>
+
+<script type="text/javascript">
+
+    var template = kendo.template($("#template").html());
+
+    $("#users-grid").kendoGrid({
+        sortable: true,
+        filterable: true,
+        pageable: true,
+        columns: [
+        { field: "UserName", title: "User name", sortable: true },
+        {
+            field: "CreateDate", title: "Create date", sortable: true,
+            type: "date",
+            format: "{0:dd-MMM-yyyy hh:mm:ss tt}"
+        },
+        {
+            field: "Id",
+            title: "Edit Role",
+            template: '<input data-roleId="#= Id #" class="role" data-userId="#= UserId #" />'
+        },
+        {
+            field: "UserId", title: "Actions", sortable: false,
+            template: template({UserId: "#= UserId #"})
+        }],
+        dataSource: {
+            transport: {
+                read: "../../user/getusers",
+                dataType: "json"
+            },
+            pageSize: 10
+        },
+        autoBind: true,
+        dataBound: function (e) {
+            $(".role").kendoDropDownList({
+                dataTextField: "Name",
+                dataValueField: "Id",
+                dataSource: {
+                    transport: {
+                        read: "../../user/getroles",
+                        dataType: "json"
+                    }
+                },
+                value: "writer",
+                index: 0,
+                change: function (e) {
+                    var value = this.value();
+                    var user = $(this.element).attr("data-userId");
+                    $.ajax({
+                        type: "Post",
+                        url: "../../User/Edit/" + user,
+                        data: {
+                            UserId: user,
+                            SelectedRoleId: value
+                        },
+                        error: function () {
+                            alert('error');
+                        }
+                    })
+                }
+            })
+        }
+    })
+
+
+</script>
