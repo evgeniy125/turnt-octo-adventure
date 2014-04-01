@@ -10,14 +10,15 @@
 <div id="users-grid"></div>
 
 <script type="text/x-kendo-template" id="template">
-    @{if (User.IsInRole("admin"))
-    {
-        <a href="@Url.Action("Edit")/#: UserId #">Edit Role</a>
-    }
     <a href="@Url.Action("Index", "Posts")/Index/#: UserId #">Posts</a>
-    }
 </script>
 
 @section scripts {
-    <script type="text/javascript" src="@Url.Content("~/Scripts/dataProcessing.js")"></script>
+    @Scripts.Render("~/bundles/usersGrid")
+
+    @if (!User.IsInRole("admin"))
+    {
+        <script type="text/javascript">hideColumn();</script>
+    }
 }
+

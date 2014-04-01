@@ -1,5 +1,17 @@
-﻿@model List<User>
+﻿@model IEnumerable<Post>
 @{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Recent posts";
 }
 
+<link type="text/css" href="~/Content/Custom/RecentPosts.css" rel="stylesheet" />
+
+<h2>Recent posts</h2>
+
+@foreach (var item in Model)
+{
+    <div class="post">
+        <h3>@Html.ActionLink(item.Title, "Details", "Posts", new { id = item.PostId}, null)</h3>
+        <div>@item.Content</div>
+        <div>@item.User.UserName @item.CreateDate.Date.ToShortDateString()</div>
+    </div>
+}

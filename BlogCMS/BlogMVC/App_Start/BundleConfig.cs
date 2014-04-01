@@ -28,8 +28,8 @@ namespace BlogMVC
                       "~/Content/site.css",
                       "~/Content/PagedList.css"));
 
-            bundles.Add(new ScriptBundle("~/bundles/dataProcessing").Include(
-            "~/Scripts/dataProcessing.js"));
+            bundles.Add(new ScriptBundle("~/bundles/usersGrid").Include(
+            "~/Scripts/custom/usersGrid.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/layoutcss").Include(
             "~/Content/Custom/Custom.css"));
@@ -44,9 +44,9 @@ namespace BlogMVC
             "~/Content/kendo/kendo.common-bootstrap.min.css",
             "~/Content/kendo/kendo.bootstrap.min.css"));
 
-            bundles.IgnoreList.Clear();
+            //bundles.IgnoreList.Clear();
 
-            BundleTable.EnableOptimizations = false;
+            //BundleTable.EnableOptimizations = false;
         }
     }
 }

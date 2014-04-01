@@ -31,26 +31,7 @@ namespace BlogMVC.Controllers
 
         public JsonResult GetUsers()
         {
-            return Json(userRepo.SelectForUserRoleModel(), JsonRequestBehavior.AllowGet);
-        }
-
-        [Authorize(Roles="admin")]
-        public ActionResult Edit(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            User user = userRepo.Find(id);
-
-            var model = new UserRoleViewModel() { UserId = user.Id, UserName = user.UserName,
-                SelectedRoleId = user.Roles.Single().Role.Id, Roles = roleRepo.All.ToList() };
-
-            if (user == null)
-            {
-                return HttpNotFound();
-            }
-            return View(model);
+            return Json(userRepo.GetUserList(), JsonRequestBehavior.AllowGet);
         }
 
         public JsonResult GetRoles()
@@ -66,7 +47,7 @@ namespace BlogMVC.Controllers
 
             if (user.Roles.Count != 1)
                 return null;
-            var role = roleRepo.FindBy(r => r.Id == viewModel.SelectedRoleId).Single();
+            var role = roleRepo.FindBy(r => r.Id == viewModel.RoleId).Single();
             user.Roles.Clear();
             user.Roles.Add(new IdentityUserRole { UserId = user.Id, RoleId = role.Id });
 

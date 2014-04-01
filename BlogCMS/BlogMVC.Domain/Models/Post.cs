@@ -22,7 +22,7 @@ namespace BlogMVC.Domain
         [DataMember]
         public DateTime CreateDate { get; set; }
         [ForeignKey("UserId")]
-        public User User { get; set; }
+        public virtual User User { get; set; }
         [DataMember]
         [Required]
         public string UserId { get; set; }

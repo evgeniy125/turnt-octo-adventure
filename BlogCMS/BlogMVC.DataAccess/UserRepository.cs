@@ -17,17 +17,21 @@ namespace BlogMVC.DataAccess
             Context.Entry(entity).CurrentValues.SetValues(user);
         }
 
-        public List<UserRoleModel> SelectForUserRoleModel()
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns>Returns users with their roles</returns>
+        public List<UserRoleViewModel> GetUserList()
         {
             var results = from user in Context.Users
                           from role in Context.Roles
                           where user.Roles.FirstOrDefault().RoleId == role.Id
-                          select new UserRoleModel
+                          select new UserRoleViewModel
                           {
                               UserName = user.UserName,
                               CreateDate = user.CreateDate,
                               UserId = user.Id,
-                              Id = user.Roles.FirstOrDefault().RoleId,
+                              RoleId = user.Roles.FirstOrDefault().RoleId,
                               RoleName = role.Name
                           };
             return results.ToList();

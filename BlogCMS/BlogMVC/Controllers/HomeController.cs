@@ -10,11 +10,12 @@ namespace BlogMVC.Controllers
 {
     public class HomeController : Controller
     {
-        private BlogDbContext db = new BlogDbContext();
+        private PostRepository postRepo = new PostRepository();
 
         public ActionResult Index()
         {
-            return View();
+            var results = postRepo.All.OrderByDescending(p => p.CreateDate).Take(10).ToList();
+            return View(results);
         }
 
         public ActionResult About()

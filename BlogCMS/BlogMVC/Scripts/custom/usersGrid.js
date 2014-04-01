@@ -17,17 +17,15 @@ $("#users-grid").kendoGrid({
         format: "{0:dd-MMM-yyyy hh:mm:ss tt}",
         editable: false
     },
-    {
-        hidden: true, field: "RoleName"
-    },
+    {field: "RoleName", hidden: true},
     {
         field: "RoleId",
         title: "Edit Role",
-        //template: '<span class="role">#= RoleName #</span>',
         editable: true,
+        template: "#= RoleName #",
         editor: function (container, options) {
             var input = $("<input/>");
-            input.attr("name", "Id");
+            input.attr("name", options.field);
                 
             input.appendTo(container);
 
@@ -53,13 +51,16 @@ $("#users-grid").kendoGrid({
                         url: "../../User/Edit/" + user,
                         data: {
                             UserId: user,
-                            SelectedRoleId: value
+                            RoleId: value
+                        },
+                        success: function () {
+                            $('#users-grid').data('kendoGrid').dataSource.read();
+                            $('#users-grid').data('kendoGrid').refresh();
                         },
                         error: function () {
                             alert('error');
                         }
                     })
-
                 },
             })
         }
@@ -77,6 +78,12 @@ $("#users-grid").kendoGrid({
         pageSize: 10
     }
 })
+
+function hideColumn()
+{
+    var grid = $("#users-grid").data("kendoGrid");
+    grid.hideColumn("RoleId");
+}
 
 
 

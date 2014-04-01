@@ -191,7 +191,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Custom\Custom.css" />
-    <Content Include="Content\Custom\jquery-ui-1.10.4.custom.css" />
+    <Content Include="Content\Custom\RecentPosts.css" />
+    <Content Include="Content\jqueryui\jquery-ui-1.10.4.custom.css" />
     <Content Include="Content\kendo\Black\editor.png" />
     <Content Include="Content\kendo\Black\imagebrowser.png" />
     <Content Include="Content\kendo\Black\indeterminate.gif" />
@@ -876,9 +877,10 @@
     <Content Include="Scripts\kendo\kendo.web.min.js" />
     <Content Include="Scripts\kendo\kendo.window.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\custom\postsGrid.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\dataProcessing.js" />
+    <Content Include="Scripts\custom\usersGrid.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -894,7 +896,6 @@
     </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout_old.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -908,19 +909,13 @@
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Account\Manage.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Shared\_LoginPartial_old.cshtml" />
-    <Content Include="Views\User\Create.cshtml" />
-    <Content Include="Views\User\Delete.cshtml" />
-    <Content Include="Views\User\Index_bootstrap.cshtml" />
     <Content Include="Views\Posts\Index.cshtml" />
     <Content Include="Views\Posts\_Posts.cshtml" />
     <Content Include="Views\Posts\Create.cshtml" />
     <Content Include="Views\Posts\Delete.cshtml" />
     <Content Include="Views\Posts\Details.cshtml" />
     <Content Include="Views\Posts\Edit.cshtml" />
-    <Content Include="Views\User\Index_kendo.cshtml" />
     <Content Include="Views\Shared\_Menu.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Scripts\kendo\jquery.min.map" />
@@ -1019,7 +1014,6 @@
     <Content Include="Scripts\kendo\kendo.view.min.js.map" />
     <Content Include="Scripts\kendo\kendo.web.min.js.map" />
     <Content Include="Scripts\kendo\kendo.window.min.js.map" />
-    <Content Include="Views\User\Index_razor.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

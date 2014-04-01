@@ -1,8 +1,4 @@
-﻿@*@model IPagedList<BlogMVC.Domain.User>*@
-
-@*@{ var mod = Model.FirstOrDefault(); }*@
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <title>@ViewBag.Title</title>
@@ -25,11 +21,6 @@
         </div>
         <div id="main">
             @RenderBody()
-        </div>
-        <div id="sidebar">
-            <ul>
-                @Html.Partial("_menu")
-            </ul>
         </div>
         <div id="footer">
             <p> &copy;2014 - My ASP.NET Application</p>

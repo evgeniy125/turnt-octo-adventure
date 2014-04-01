@@ -1,19 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using Microsoft.AspNet.Identity.EntityFramework;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace BlogMVC.Models
+namespace BlogMVC.Domain.Models
 {
     public class UserRoleViewModel
     {
-        public List<IdentityRole> Roles { get; set; }
-
-        public string SelectedRoleId { get; set; }
-
-        public string UserId { get; set; }
-
         public string UserName { get; set; }
+        public DateTime CreateDate { get; set; }
+        public string UserId { get; set; }
+        public string RoleId { get; set; }
+        public string RoleName { get; set; }
     }
 }

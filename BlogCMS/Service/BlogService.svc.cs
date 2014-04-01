@@ -102,8 +102,5 @@ namespace Service
             _postRepo.Save();
             return new HttpResponse<Post> { Success = true, Data = post };
         }
-
-
-        // Add more operations here and mark them with [OperationContract]
     }
 }

@@ -1,0 +1,12 @@
+﻿body {
+    background-color: azure
+}
+
+.post {
+    background-color:ButtonFace;
+    width: 70%;
+}
+
+h2 {
+    margin-bottom: 50px;
+}
