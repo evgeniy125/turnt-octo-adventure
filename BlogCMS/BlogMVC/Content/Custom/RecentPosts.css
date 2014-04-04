@@ -5,8 +5,21 @@
 .post {
     background-color:ButtonFace;
     width: 70%;
+    margin-bottom:20px;
 }
 
 h2 {
     margin-bottom: 50px;
+}
+
+.signature {
+    margin-top: 10px;
+    font-style: italic;
+    color: darkgrey;
+    padding-left: 10px;
+}
+
+.post p {
+    text-indent: 20px;
+    padding: 15px 10px 0px 10px;
 }

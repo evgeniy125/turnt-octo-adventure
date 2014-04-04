@@ -11,7 +11,19 @@
 {
     <div class="post">
         <h3>@Html.ActionLink(item.Title, "Details", "Posts", new { id = item.PostId}, null)</h3>
-        <div>@item.Content</div>
-        <div>@item.User.UserName @item.CreateDate.Date.ToShortDateString()</div>
+        <div>
+            <p>
+                @if (@item.Content.Length > 800)
+                {
+                    @item.Content.Substring(0, 800)
+                    @:...
+                }
+                else
+                {
+                    @item.Content
+                }
+            </p>
+        </div>
+        <div class="signature">@item.User.UserName @item.CreateDate.Date.ToShortDateString()</div>
     </div>
 }

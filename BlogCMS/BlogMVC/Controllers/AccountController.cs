@@ -1,4 +1,4 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -8,9 +8,11 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
+
 using BlogMVC.Models;
 using BlogMVC.Domain;
 using BlogMVC.DataAccess;
+
 
 namespace BlogMVC.Controllers
 {
@@ -87,7 +89,7 @@ namespace BlogMVC.Controllers
                 if (result.Succeeded)
                 {
                     await SignInAsync(user, isPersistent: false);
-                    return RedirectToAction("Index", "User");
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
@@ -294,7 +296,7 @@ namespace BlogMVC.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "User");
+            return RedirectToAction("Index", "Home");
         }
 
         //

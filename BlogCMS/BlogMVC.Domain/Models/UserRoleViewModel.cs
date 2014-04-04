@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BlogMVC.Domain.Models
+namespace BlogMVC.Domain
 {
     public class UserRoleViewModel
     {

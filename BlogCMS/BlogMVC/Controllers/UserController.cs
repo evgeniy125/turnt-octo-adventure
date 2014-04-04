@@ -6,15 +6,15 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BlogMVC.Models;
+using System.Web.Security;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity;
-using System.Web.Security;
 using PagedList;
+
+using BlogMVC.Models;
 using BlogMVC.Domain;
 using BlogMVC.DataAccess;
-using BlogMVC.Domain.Models;
-//using BlogMVC.DataAccessDbFirst;
+
 
 namespace BlogMVC.Controllers
 {

@@ -64,18 +64,12 @@ namespace Service
         public HttpResponse<Post> UpdatePost(Post post, string id)
         {
             int postId = int.Parse(id);
-            if (post.PostId != postId)
+            if (post.PostId != postId || _postRepo.Find(postId) == null)
             {
                 return new HttpResponse<Post> { Success = false, ErrorMessage = "No such post exists." };
             }
-            if (_postRepo.Find(postId) == null)
-            {
-                _postRepo.Add(post);
-            }
-            else
-            {
-                _postRepo.EditPost(post);
-            }
+
+            _postRepo.EditPost(post);
             _postRepo.Save();
             return new HttpResponse<Post> { Success = true };
         }

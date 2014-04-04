@@ -6,13 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using BlogMVC.Models;
 using Microsoft.AspNet.Identity;
-using BlogMVC.DataAccess;
-//using BlogMVC.DataAccessDbFirst;
-using DataAccessDbFirst;
-using BlogMVC.Domain;
 using GenericRepository.EF;
+
+using BlogMVC.Models;
+using BlogMVC.DataAccess;
+using BlogMVC.Domain;
+
 
 namespace BlogMVC.Controllers
 {

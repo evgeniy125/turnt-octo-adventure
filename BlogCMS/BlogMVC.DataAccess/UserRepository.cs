@@ -1,11 +1,12 @@
-﻿using BlogMVC.Domain;
-using BlogMVC.Domain.Models;
-using GenericRepository.EF;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GenericRepository.EF;
+
+using BlogMVC.Domain;
+
 
 namespace BlogMVC.DataAccess
 {
