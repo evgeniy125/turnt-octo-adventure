@@ -21,6 +21,7 @@ namespace BlogMVC.Controllers
     {
         private PostRepository postRepo = new PostRepository();
         private UserRepository userRepo = new UserRepository();
+        
         public ActionResult Index([Bind(Prefix = "id")] string userId)
         {
             var user = userRepo.Find(userId);

@@ -9,6 +9,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 
+using AutoMapper;
+
 using BlogMVC.Models;
 using BlogMVC.Domain;
 using BlogMVC.DataAccess;
@@ -19,6 +21,7 @@ namespace BlogMVC.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        private UserRepository userRepo = new UserRepository();
         public AccountController()
             : this(new UserManager<User>(new UserStore<User>(new BlogDbContext())))
         {
@@ -82,7 +85,8 @@ namespace BlogMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User() { UserName = model.UserName };
+                var user = Mapper.Map<RegisterViewModel, User>(model);
+                //var user = new User() { UserName = model.UserName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 UserManager.AddToRole(user.Id, "reader");
 
@@ -98,7 +102,7 @@ namespace BlogMVC.Controllers
             }
 
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return View();
         }
 
         //
@@ -132,6 +136,7 @@ namespace BlogMVC.Controllers
                 : "";
             ViewBag.HasLocalPassword = HasPassword();
             ViewBag.ReturnUrl = Url.Action("Manage");
+
             return View();
         }
 

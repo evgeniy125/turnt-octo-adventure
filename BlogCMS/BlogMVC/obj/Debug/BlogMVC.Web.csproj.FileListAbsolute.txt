@@ -86,3 +86,6 @@ C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC\bin\ru-RU\Kendo.Mvc.res
 C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC\bin\sv-SE\Kendo.Mvc.resources.dll
 C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC\bin\uk-UA\Kendo.Mvc.resources.dll
 C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC\bin\zh-CN\Kendo.Mvc.resources.dll
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC\bin\AutoMapper.Net4.dll
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC\bin\AutoMapper.dll
+C:\Users\Евгений\Documents\GitHub\BlogCMS\BlogMVC\bin\AutoMapper.xml

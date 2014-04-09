@@ -1,0 +1,24 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Blogs for users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Blogs for users</h2>
+
+<div id="users-grid"></div>
+
+<script type="text/x-kendo-template" id="template">
+    <a href="@Url.Action("Index", "Posts")/Index/#: UserId #">Posts</a>
+</script>
+
+@section scripts {
+    @Scripts.Render("~/bundles/usersGrid")
+
+    @if (!User.IsInRole("admin"))
+    {
+        <script type="text/javascript">hideColumn();</script>
+    }
+}
+

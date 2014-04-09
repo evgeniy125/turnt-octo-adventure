@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/bundles/layoutStyles")
+    @Scripts.Render("~/bundles/jquery")
+    @Styles.Render("~/Content/kendo/css")
+    @Scripts.Render("~/bundles/kendo")
+</head>
+<body>
+    <div id="wrap">
+        <div id="nav">
+            <ul class="nav_left">
+                <li>@Html.ActionLink("Blogger", "Index", "Home")</li>
+                <li>@Html.ActionLink("Blogs", "Index", "User")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+            </ul>
+            @Html.Partial("_LoginPartial");
+        </div>
+        <div id="main">
+            @RenderBody()
+        </div>
+        <div id="footer">
+            <p> &copy; 2014 - My Blogger</p>
+        </div>
+    </div>
+    @RenderSection("scripts", required: false)
+</body>
+</html>

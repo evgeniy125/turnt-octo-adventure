@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword />
+    <_PublishTargetUrl>ftp://blogger.somee.com/www.blogger.somee.com</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>03/11/2014 16:27:05</publishTime>
+    </File>
+    <File Include="bin/BlogMVC.DataAccess.dll">
+      <publishTime>04/04/2014 15:07:27</publishTime>
+    </File>
+    <File Include="bin/BlogMVC.dll">
+      <publishTime>04/04/2014 15:07:28</publishTime>
+    </File>
+    <File Include="bin/BlogMVC.Domain.dll">
+      <publishTime>04/04/2014 15:07:26</publishTime>
+    </File>
+    <File Include="bin/DataAccessDbFirst.dll">
+      <publishTime>04/04/2014 15:07:27</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>03/11/2014 16:28:21</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>11/03/2014 16:28:21</publishTime>
+    </File>
+    <File Include="bin/GenericRepository.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/GenericRepository.EF.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Kendo.Mvc.dll">
+      <publishTime>01/01/0001 00:00:00</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Core.dll">
+      <publishTime>11/03/2014 16:28:29</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.EntityFramework.dll">
+      <publishTime>11/03/2014 16:28:32</publishTime>
+    </File>
+    <File Include="bin/Microsoft.AspNet.Identity.Owin.dll">
+      <publishTime>11/03/2014 16:28:34</publishTime>
+    </File>
+    <File Include="favicon.ico">
+      <publishTime>02/28/2014 11:46:30</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>02/28/2014 11:46:30</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>03/18/2014 12:12:25</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>04/04/2014 15:07:46</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Users</h2>
+
+<link type="text/css" href="../../Content/Custom/Users-knockout.css" rel="stylesheet" />
+
+<div id="filters">
+    <div>
+        <strong id="username">User name</strong>
+        <input type="text" data-bind="value: userNameFilter" />
+    </div>
+    <div>
+        <strong id="rolename">Role name</strong>
+        <input type="text" data-bind="value: roleNameFilter" />
+    </div>
+</div>
+
+<table id="user-table">
+    <thead>
+        <tr>
+            <th data-bind="click: sortByUserName">
+                User name
+                <img data-bind="visible: userNameArrow() == 'down'" src="../../Content/images/down.gif" />
+                <img data-bind="visible: userNameArrow() == 'up'" src="../../Content/images/up.gif" />
+            </th>
+            <th data-bind="click: sortByDate">
+                Create date
+                <img data-bind="visible: dateArrow() == 'down'" src="../../Content/images/down.gif" />
+                <img data-bind="visible: dateArrow() == 'up'" src="../../Content/images/up.gif" />
+            </th>
+            <th data-bind="click: sortByRoleName">
+                Role name
+                <img data-bind="visible: roleNameArrow() == 'down'" src="../../Content/images/down.gif" />
+                <img data-bind="visible: roleNameArrow() == 'up'" src="../../Content/images/up.gif" />
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody data-bind="foreach: filteredUsers">
+        <tr data-bind="css: { 'even': ($index() % 2 == 0), 'odd': ($index() % 2 == 1) }">
+            <td data-bind="text: username"></td>
+            <td data-bind="text: createDate"></td>
+            <td><select class="select" data-bind="event: { change: $root.changed }, options: $root.roles, value: role, optionsText: 'roleName'"></select></td>
+            <td>
+                <button data-bind="click: $root.selectRole, enable: saveRequired">Save</button>
+                <button data-bind="click: $root.read">Read blog</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<script type="text/javascript" src="../../Scripts/custom/usersKnockoutGrid.js"></script>

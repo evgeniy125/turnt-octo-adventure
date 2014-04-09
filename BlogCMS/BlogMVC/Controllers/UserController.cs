@@ -29,6 +29,11 @@ namespace BlogMVC.Controllers
             return View(userRepo.All.OrderBy(u => u.UserName).ToPagedList(page, 5));
         }
 
+        public ActionResult Users()
+        {
+            return View();
+        }
+
         public JsonResult GetUsers()
         {
             return Json(userRepo.GetUserList(), JsonRequestBehavior.AllowGet);

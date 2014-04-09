@@ -26,6 +26,9 @@ namespace BlogMVC.Models
         [Display(Name = "Confirm new password")]
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        public string Email { get; set; }
+        public string Name { get; set; }
     }
 
     public class LoginViewModel
@@ -45,9 +48,13 @@ namespace BlogMVC.Models
 
     public class RegisterViewModel
     {
+        public string Name { get; set; }
+
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
+
+        public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]

@@ -1,0 +1,21 @@
+﻿@model Post
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link type="text/css" href="~/Content/Custom/RecentPosts.css" rel="stylesheet" />
+
+<h2>Post details</h2>
+
+<div>
+    <div class="post">
+        <h3>@Model.Title</h3>
+        <div><p>@Model.Content</p></div>
+        <div class="signature">@Model.User.UserName @Model.CreateDate.Date.ToShortDateString()</div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index", new {id = Model.UserId})
+</p>

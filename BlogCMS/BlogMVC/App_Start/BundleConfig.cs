@@ -8,6 +8,8 @@ namespace BlogMVC
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.IgnoreList.Clear();
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -31,8 +33,11 @@ namespace BlogMVC
             bundles.Add(new ScriptBundle("~/bundles/usersGrid").Include(
             "~/Scripts/custom/usersGrid.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/layoutcss").Include(
+            bundles.Add(new StyleBundle("~/bundles/layoutStyles").Include(
             "~/Content/Custom/Custom.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/knockoutjs").Include(
+            "~/Scripts/knockoutjs/knockout-3.1.0.js"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
@@ -44,7 +49,6 @@ namespace BlogMVC
             "~/Content/kendo/kendo.common-bootstrap.min.css",
             "~/Content/kendo/kendo.bootstrap.min.css"));
 
-            //bundles.IgnoreList.Clear();
 
             //BundleTable.EnableOptimizations = false;
         }

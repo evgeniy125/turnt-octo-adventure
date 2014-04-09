@@ -1,0 +1,18 @@
+﻿@model User
+@using Microsoft.AspNet.Identity
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Posts for @Model.UserName</h2>
+
+@Html.Partial("_Posts", Model.Posts)
+
+@if ((User.IsInRole("writer") || User.IsInRole("admin")) && Model.Id == User.Identity.GetUserId())
+{
+    <p>
+        @Html.ActionLink("Create New", "Create", new { userId = @Model.Id })
+    </p>
+}
