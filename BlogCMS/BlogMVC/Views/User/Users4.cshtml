@@ -1,0 +1,122 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Users</h2>
+
+<script type="text/html" id="TableRow">
+    <tr>
+        <td data-bind="text: UserName"></td>
+        <td data-bind="text: CreateDate"></td>
+        <td data-bind="text: RoleName"></td>
+    </tr>
+</script>
+
+
+<div data-bind="foreach: filters">
+    <strong data-bind="text: title"></strong>
+    <input type="text" data-bind="value: param" />
+    <input type="button" data-bind="click: $root.setActiveFilter">
+</div>
+
+<table>
+    <thead>
+        <tr data-bind="foreach: headers">
+            <th data-bind="click: $root.sort, text: title"></th>
+        </tr>
+    </thead>
+    <tbody data-bind="template: { name: 'TableRow', foreach: filteredRows }"></tbody>
+</table>
+
+
+<script type="text/javascript">
+
+    var viewModel = function (itemsUrl, headers, filters) {
+        var self = this;
+
+        self.rows = ko.observableArray([]);
+
+        self.activeFilterParam = ko.observable("");
+
+        //self.setActiveFiltersParams = function (model) {
+        //    self.filters
+        //};
+
+        self.params = ko.observableArray([]);
+
+        self.filters = ko.observableArray([
+        { title: 'Show All', filter: null, param: "" },
+        { title: 'Only Smith', filter: "UserName", param: "" },
+        { title: 'Only Jones', filter: function (item) { return item.CreateDate == this.param; }, param: "" },
+        { title: 'Only Adults', filter: function (item) { return item.RoleName == self.activeFilterParam() }, param: "" }]);
+        self.headers = [
+        { title: 'User name', sortPropertyName: 'UserName', asc: true, active: false },
+        { title: 'Create date', sortPropertyName: 'CreateDate', asc: true, active: false },
+        { title: 'Role name', sortPropertyName: 'RoleName', asc: true, active: false }];
+
+        //Sorting
+
+        self.sort = function (header, event) {
+            if (header.active)
+                header.asc = !header.asc;
+            ko.utils.arrayForEach(self.headers, function (item) { item.active = false });
+            header.active = true;
+
+            var prop = header.sortPropertyName;
+            var ascSort = function (a, b) { return a[prop] < b[prop] ? -1 : a[prop] > b[prop] ? 1 : 0 };
+            var descSort = function (a, b) { return a[prop] > b[prop] ? -1 : a[prop] < b[prop] ? 1 : 0 };
+            var sortFunc = header.asc ? ascSort : descSort;
+
+            self.activeSort(sortFunc);
+        };
+
+        self.activeSort = ko.observable(function () { return 0; });
+
+        self.activeFilters = ko.observableArray([]);
+
+        self.setActiveFilter = function (model, event) {
+            alert('pushed');
+            alert(model.filter);
+            self.activeFilters.push(function (item) { return item[model.filter] == model.param });
+            alert(self.activeFilters().length);
+        };
+
+        self.filteredRows = ko.computed(function () {
+            var result;
+            var temp = self.rows();
+            if (self.activeFilters().length != 0) {
+                for (var i = 0; i < self.activeFilters().length; i++) {
+
+                    temp = ko.utils.arrayFilter(temp, self.activeFilters()[i]);
+                }
+                //return ko.utils.arrayFilter(self.rows(), self.activeFilter());
+                return temp;
+            }
+            else {
+                result = self.rows();
+            }
+            //return result.sort(self.activeSort());
+            return temp.sort(self.activeSort());
+        });
+
+
+
+
+        $.getJSON(headers, function (data) {
+            self.headers = data;
+        });
+
+        $.getJSON(filters, function (data) {
+            self.filters = data;
+        });
+
+        $.getJSON(itemsUrl, function (data) {
+            self.rows(data);
+        });
+    }
+
+    ko.applyBindings(new viewModel("../../user/getusers"));
+</script>

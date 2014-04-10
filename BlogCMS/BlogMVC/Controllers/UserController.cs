@@ -31,7 +31,7 @@ namespace BlogMVC.Controllers
 
         public ActionResult Users()
         {
-            return View();
+            return View(Json(userRepo.GetUserList(), JsonRequestBehavior.AllowGet));
         }
 
         public JsonResult GetUsers()

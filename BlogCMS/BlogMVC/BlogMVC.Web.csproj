@@ -433,6 +433,7 @@
     <None Include="Properties\PublishProfiles\BlogMVC.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\custom\usersKnockoutGrid.js" />
+    <Content Include="Scripts\custom\usersKoGrid.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -1032,6 +1033,10 @@
     <Content Include="Scripts\kendo\kendo.window.min.js.map" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Users.cshtml" />
+    <Content Include="Views\User\Users2.cshtml" />
+    <Content Include="Views\User\Users3.cshtml" />
+    <Content Include="Views\User\Users4.cshtml" />
+    <Content Include="Views\User\Users5.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

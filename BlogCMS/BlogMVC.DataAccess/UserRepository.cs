@@ -33,7 +33,8 @@ namespace BlogMVC.DataAccess
                               CreateDate = user.CreateDate,
                               UserId = user.Id,
                               RoleId = user.Roles.FirstOrDefault().RoleId,
-                              RoleName = role.Name
+                              RoleName = role.Name,
+                              SaveRequired = false
                           };
             return results.ToList();
         }
