@@ -202,9 +202,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Custom\Custom.css" />
     <Content Include="Content\Custom\RecentPosts.css" />
+    <Content Include="Content\Custom\users-ko.css" />
     <Content Include="Content\Custom\Users-knockout.css" />
-    <Content Include="Content\images\down.gif" />
-    <Content Include="Content\images\up.gif" />
+    <Content Include="Content\images\down.png" />
+    <Content Include="Content\images\up.png" />
     <Content Include="Content\jqueryui\jquery-ui-1.10.4.custom.css" />
     <Content Include="Content\kendo\Black\editor.png" />
     <Content Include="Content\kendo\Black\imagebrowser.png" />

@@ -1,0 +1,93 @@
+﻿body, html {
+    padding: 0;
+    margin: 0;
+}
+
+#filters {
+    margin-bottom: 20px;
+    border: none;
+}
+
+    #filters td {
+        border: none;
+    }
+
+.filter-input:focus {
+    box-shadow: 0 0 5px 5px gray;
+    border: none;
+}
+
+button {
+    border-radius: 5px;
+}
+
+#user-table {
+    border-spacing: 0;
+    /*border-collapse: collapse;*/
+    border-color: blue;
+    width: 100%;
+}
+
+.left-corner {
+    border-radius: 10px 0 0 0;
+}
+
+.right-corner {
+    border-radius: 0 10px 0 0;
+}
+
+.gradient {
+    background: linear-gradient(to top left, gray, white);
+    background-repeat: no-repeat;
+}
+
+.row:hover {
+    background-color: rgb(80,80,80);
+    background-repeat: no-repeat;
+}
+
+th {
+    text-align: left;
+    font-family: Helvetica;
+    background-color: rgb(243,243,243);
+    border: solid 1px;
+    border-bottom: solid 2px;
+    border-color: rgb(227,227,227);
+}
+
+    th strong {
+        font-size: 10pt;
+        color: rgb(102,102,102);
+    }
+
+    th img {
+        vertical-align: middle;
+    }
+
+select {
+    background-color: rgb(227,227,227);
+    width: 50%;
+}
+
+td {
+    border: solid 1px;
+    border-color: rgb(227,227,227);
+}
+
+
+#col1 {
+    width: 25%;
+    color: rgb(225, 111, 0);
+}
+
+#col2 {
+    width: 25%;
+}
+
+#col3 {
+    width: 30%;
+}
+
+#col4 {
+    width: 20%;
+}

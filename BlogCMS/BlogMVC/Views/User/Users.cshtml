@@ -1,49 +1,55 @@
-﻿@model dynamic
-
-@{
+﻿@{
     ViewBag.Title = "Users";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Users</h2>
 
+<link type="text/css" href="../../Content/Custom/users-ko.css" rel="stylesheet" />
 
-<div data-bind="foreach: filters">
-    <div>
-        <strong data-bind="text: title"></strong>
-        <input type="text" data-bind="value: param" />
-    </div>
-</div>
-
-<table>
-    <thead>
-        <tr data-bind="template: {name: 'head-template', foreach: headers, as: 'header'}">
+<table id="filters">
+    <tbody data-bind="foreach: filters">
+        <tr>
+            <td>
+                <strong data-bind="text: title"></strong>
+            </td>
+            <td>
+                @*<input class="filter-input" type="text" data-bind="value: param, event: { keyup: $root.bindParam }" />*@
+                <input class="filter-input" type="text" data-bind="value: param, valueUpdate: ['input', 'afterkeydown']" />
+            </td>
         </tr>
+    </tbody>
+</table>
+
+<table id="user-table" class="gradient">
+    <thead>
+        <tr data-bind="template: { name: 'head-template', foreach: headers }"></tr>
     </thead>
     <tbody data-bind="template: { name: 'TableRow', foreach: filteredRows }"></tbody>
 </table>
 
+
+<!--Templates-->
+
 <script type="text/html" id="TableRow">
-    <tr>
-        <td data-bind="text: UserName"></td>
-        <td data-bind="text: CreateDate"></td>
-        <td>
+    <tr class="row">
+        <td id="col1" data-bind="text: UserName"></td>
+        <td id="col2" data-bind="text: CreateDate"></td>
+        <td id="col3">
             <select data-bind="event: { change: $root.selectChanged }, options: $root.roles, optionsValue: 'Id', value: RoleId, optionsText: 'Name'"></select>
         </td>
-        <td>
+        <td id="col4">
             <button data-bind="enable: SaveRequired, click: $root.save">Save</button>
-            <button>Read blog</button>
+            <button data-bind="click: $root.read">Read blog</button>
         </td>
     </tr>
 </script>
 
 <script type="text/html" id="head-template">
-    <th data-bind="click: $root.sort">
+    <th data-bind="click: $root.sort, css: { 'left-corner': $index() == 0, 'right-corner': $index() == 3 }">
         <strong data-bind="text: title"></strong>
-        @*<text data-bind="text: asc"></text>
-            <text data-bind="text: active"></text>
-            <img data-bind="css: { display: (asc & active) }" src="../../Content/images/down.gif" />
-            <img data-bind="css: { hide: (!asc & active) }" src="../../Content/images/up.gif" />*@
+        <img data-bind="visible: asc() & active()" src="../../Content/images/down.png" />
+        <img data-bind="visible: !asc() & active()" src="../../Content/images/up.png" />
     </th>
 </script>
 

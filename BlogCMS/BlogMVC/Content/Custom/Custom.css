@@ -82,10 +82,9 @@ tr.last {
 
 
 #main {
-    float: right;
-    width: 85%;
     /*background: #9c9;*/
-    margin-left: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
     margin-bottom: 100px;
 }
 
