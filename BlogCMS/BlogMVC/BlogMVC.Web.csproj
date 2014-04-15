@@ -203,7 +203,6 @@
     <Content Include="Content\Custom\Custom.css" />
     <Content Include="Content\Custom\RecentPosts.css" />
     <Content Include="Content\Custom\users-ko.css" />
-    <Content Include="Content\Custom\Users-knockout.css" />
     <Content Include="Content\images\down.png" />
     <Content Include="Content\images\up.png" />
     <Content Include="Content\jqueryui\jquery-ui-1.10.4.custom.css" />
@@ -433,6 +432,7 @@
     <None Include="Properties\PublishProfiles\Blog.pubxml" />
     <None Include="Properties\PublishProfiles\BlogMVC.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\custom\gridControl.js" />
     <Content Include="Scripts\custom\usersKnockoutGrid.js" />
     <Content Include="Scripts\custom\usersKoGrid.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -1034,10 +1034,7 @@
     <Content Include="Scripts\kendo\kendo.window.min.js.map" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Users.cshtml" />
-    <Content Include="Views\User\Users2.cshtml" />
-    <Content Include="Views\User\Users3.cshtml" />
-    <Content Include="Views\User\Users4.cshtml" />
-    <Content Include="Views\User\Users5.cshtml" />
+    <Content Include="Views\User\CustomBinding.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -10,7 +10,7 @@
 @foreach (var item in Model)
 {
     <div class="post">
-        <h3>@Html.ActionLink(item.Title, "Details", "Posts", new { id = item.PostId}, null)</h3>
+        <h3>@Html.ActionLink(item.Title, "Details", "Posts", new { id = item.PostId }, null)</h3>
         <div>
             <p>
                 @if (@item.Content.Length > 800)
@@ -24,6 +24,6 @@
                 }
             </p>
         </div>
-        <div class="signature">@item.User.UserName @item.CreateDate.Date.ToShortDateString()</div>
+        <div class="post-signature">@item.User.UserName @item.CreateDate.Date.ToShortDateString()</div>
     </div>
 }

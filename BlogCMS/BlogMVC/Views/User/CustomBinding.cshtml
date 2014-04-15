@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "CustomBinding";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CustomBinding</h2>
+
+<!--ko grid-control-->
+
+
+
+
+<script id="grid-control" type="text/html">
+    <table id="filters">
+        <tbody>
+            <!--ko foreach: filters-->
+            <tr>
+                <td>
+                    <strong data-bind="text: title"></strong>
+                </td>
+                <td>
+                    <input class="filter-input" type="text" data-bind="value: param, valueUpdate: ['input', 'afterkeydown']" />
+                </td>
+            </tr>
+            <!--/ko-->
+        </tbody>
+    </table>
+    <table id="user-table" class="gradient">
+        <thead>
+            <!--ko foreach: headers-->
+        <th data-bind="click: $root.sort, css: { 'left-corner': $index() == 0, 'right-corner': $index() == 3 }">
+            <strong data-bind="text: title"></strong>
+            <img data-bind="visible: asc() & active()" src="../../Content/images/down.png" />
+            <img data-bind="visible: !asc() & active()" src="../../Content/images/up.png" />
+        </th>
+        <!--/ko-->
+        </thead>
+        <tbody>
+            <!--ko foreach: filteredRows-->
+            <tr class="row">
+                <td id="col1" data-bind="text: UserName"></td>
+                <td id="col2" data-bind="text: CreateDate"></td>
+                <td id="col3">
+                    <select data-bind="event: { change: $root.selectChanged }, options: $root.roles, optionsValue: 'Id', value: RoleId, optionsText: 'Name'"></select>
+                </td>
+                <td id="col4">
+                    <button data-bind="enable: SaveRequired, click: $root.save">Save</button>
+                    <button data-bind="click: $root.read">Read blog</button>
+                </td>
+            </tr>
+            <!--/ko-->
+        </tbody>
+    </table>
+</script>
+
+
+
+<script type="text/javascript">
+    ko.bindingHandlers['grid-control'] = {
+
+    };
+
+
+    var viewModel = {
+
+    };
+</script>

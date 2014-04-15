@@ -8,49 +8,47 @@
 <link type="text/css" href="../../Content/Custom/users-ko.css" rel="stylesheet" />
 
 <table id="filters">
-    <tbody data-bind="foreach: filters">
+    <tbody data-bind="foreach: grid.filters">
         <tr>
             <td>
                 <strong data-bind="text: title"></strong>
             </td>
             <td>
-                @*<input class="filter-input" type="text" data-bind="value: param, event: { keyup: $root.bindParam }" />*@
                 <input class="filter-input" type="text" data-bind="value: param, valueUpdate: ['input', 'afterkeydown']" />
             </td>
         </tr>
     </tbody>
 </table>
 
-<table id="user-table" class="gradient">
+<table id="user-table">
     <thead>
-        <tr data-bind="template: { name: 'head-template', foreach: headers }"></tr>
+        <tr data-bind="template: { name: 'head-template', foreach: grid.headers }"></tr>
     </thead>
-    <tbody data-bind="template: { name: 'TableRow', foreach: filteredRows }"></tbody>
+    <tbody data-bind="template: { name: 'row-template', foreach: grid.filteredRows }"></tbody>
 </table>
-
 
 <!--Templates-->
 
-<script type="text/html" id="TableRow">
-    <tr class="row">
-        <td id="col1" data-bind="text: UserName"></td>
-        <td id="col2" data-bind="text: CreateDate"></td>
-        <td id="col3">
-            <select data-bind="event: { change: $root.selectChanged }, options: $root.roles, optionsValue: 'Id', value: RoleId, optionsText: 'Name'"></select>
+<script type="text/html" id="row-template">
+    <tr class="table-row">
+        <td id="name-column" data-bind="text: UserName"></td>
+        <td id="date-column" data-bind="text: CreateDate"></td>
+        <td id="role-column">
+            <select data-bind="event: { change: $root.grid.selectChanged }, options: $root.grid.roles, optionsValue: 'Id', value: RoleId, optionsText: 'Name'"></select>
         </td>
-        <td id="col4">
-            <button data-bind="enable: SaveRequired, click: $root.save">Save</button>
-            <button data-bind="click: $root.read">Read blog</button>
+        <td id="actions-column">
+            <button data-bind="enable: SaveRequired, click: $root.grid.save">Save</button>
+            <button data-bind="click: $root.grid.read">Read blog</button>
         </td>
     </tr>
 </script>
 
 <script type="text/html" id="head-template">
-    <th data-bind="click: $root.sort, css: { 'left-corner': $index() == 0, 'right-corner': $index() == 3 }">
+    <th data-bind="click: $root.grid.sort, css: { 'table-left-corner': $index() == 0, 'table-right-corner': $index() == 3, 'header': true, 'header-clickable': $index() != 3}">
         <strong data-bind="text: title"></strong>
         <img data-bind="visible: asc() & active()" src="../../Content/images/down.png" />
         <img data-bind="visible: !asc() & active()" src="../../Content/images/up.png" />
     </th>
 </script>
 
-<script type="text/javascript" src="../../Scripts/custom/usersKoGrid.js"></script>
+<script type="text/javascript" src="../../Scripts/custom/gridControl.js"></script>

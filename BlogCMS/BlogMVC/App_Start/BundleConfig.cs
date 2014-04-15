@@ -49,8 +49,6 @@ namespace BlogMVC
             "~/Content/kendo/kendo.common-bootstrap.min.css",
             "~/Content/kendo/kendo.bootstrap.min.css"));
 
-
-            //BundleTable.EnableOptimizations = false;
         }
     }
 }

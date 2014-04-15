@@ -2,55 +2,17 @@
     margin: 0;
     padding: 0;
     color: #000;
-    /*background-color:#a7a09a;*/
 }
-
-.posts-table {
-    text-align: left;
-    width: 100%;
-}
-
-.sidebar-item {
-    margin-bottom: 20px;
-}
-
-
-    .sidebar-item a:hover {
-        background-color: blue;
-    }
-
-.posts-table td {
-    padding-bottom: 20px;
-}
-
-.posts-table tr {
-    border-bottom: solid 1px gray;
-}
-
-.posts-table {
-    border-collapse: collapse;
-}
-
-tr.last {
-    border-bottom: none;
-}
-
 
 #wrap {
     width: 100%;
     margin: 0 auto;
-    /*background:#99c;*/
 }
 
 #nav {
-    /*background: #c99;*/
     background-color: black;
     width: 100%;
     height: 60px;
-}
-
-#pagedList {
-    margin-top: 50px;
 }
 
 #nav li {
@@ -58,31 +20,31 @@ tr.last {
     padding-right: 20px;
 }
 
-#nav > ul > li:nth-child(1) > a {
-    font-size: larger;
-}
-
-.nav_right {
+.navigation-right {
     float: right !important;
     width: 45%;
-    margin: 20px 20px 20px 0px;
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    margin-left: 0px;
     padding: 0;
 }
 
-    .nav_right li {
+    .navigation-right li {
         float: right;
     }
 
-.nav_left {
+.navigation-left {
     float: left !important;
-    margin: 20px 0px 20px 5%;
+    margin-top: 20px;
+    margin-right: 0px;
+    margin-bottom: 20px;
+    margin-left: 5%;
     width: 45%;
     padding: 0;
 }
 
-
 #main {
-    /*background: #9c9;*/
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 100px;
@@ -91,7 +53,6 @@ tr.last {
 #sidebar {
     float: left;
     width: 10%;
-    /*background: #c9c;*/
 }
 
     #sidebar ul {
@@ -100,7 +61,6 @@ tr.last {
     }
 
     #sidebar a {
-        /*color: blue;*/
         font-family: sans-serif;
         text-decoration: none;
     }
@@ -109,7 +69,11 @@ tr.last {
     color: gray;
     font-family: sans-serif;
     text-decoration: none;
-    font-size: medium;
+    font-size: 1em;
+}
+
+#nav #navigation-left-home a:link {
+    font-size: larger;
 }
 
 #nav a:visited {
@@ -127,5 +91,4 @@ tr.last {
 #footer {
     clear: both;
     margin-left: 15%;
-    /*background: #cc9;*/
 }
