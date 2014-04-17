@@ -14,7 +14,7 @@
                 <strong data-bind="text: title"></strong>
             </td>
             <td>
-                <input class="filter-input" type="text" data-bind="value: param, valueUpdate: ['input', 'afterkeydown']" />
+                <input class="filters-input" type="text" data-bind="value: param, valueUpdate: ['input', 'afterkeydown']" />
             </td>
         </tr>
     </tbody>
@@ -24,19 +24,25 @@
     <thead>
         <tr data-bind="template: { name: 'head-template', foreach: grid.headers }"></tr>
     </thead>
-    <tbody data-bind="template: { name: 'row-template', foreach: grid.filteredRows }"></tbody>
+    <tbody data-bind="template: { name: 'row-template', foreach: grid.pagedAndSortedRows }"></tbody>
 </table>
+
+<button data-bind="enable: grid.previousPageEnabled, text: '<<', click: grid.firstPage"></button>
+<button data-bind="enable: grid.previousPageEnabled, text: '<', click: grid.previousPage"></button>
+<span data-bind="text: grid.page"></span>
+<button data-bind="enable: grid.nextPageEnabled, text: '>', click: grid.nextPage"></button>
+<button data-bind="enable: grid.nextPageEnabled, text: '>>', click: grid.lastPage"></button>
 
 <!--Templates-->
 
 <script type="text/html" id="row-template">
     <tr class="table-row">
-        <td id="name-column" data-bind="text: UserName"></td>
-        <td id="date-column" data-bind="text: CreateDate"></td>
-        <td id="role-column">
+        <td id="table-name-header" data-bind="text: UserName"></td>
+        <td id="table-date-header" data-bind="text: CreateDate"></td>
+        <td id="table-role-header">
             <select data-bind="event: { change: $root.grid.selectChanged }, options: $root.grid.roles, optionsValue: 'Id', value: RoleId, optionsText: 'Name'"></select>
         </td>
-        <td id="actions-column">
+        <td id="table-actions-header">
             <button data-bind="enable: SaveRequired, click: $root.grid.save">Save</button>
             <button data-bind="click: $root.grid.read">Read blog</button>
         </td>
@@ -44,7 +50,7 @@
 </script>
 
 <script type="text/html" id="head-template">
-    <th data-bind="click: $root.grid.sort, css: { 'table-left-corner': $index() == 0, 'table-right-corner': $index() == 3, 'header': true, 'header-clickable': $index() != 3}">
+    <th data-bind="click: $root.grid.sort, css: { 'table-left-corner': $index() == 0, 'table-right-corner': $index() == 3, 'table-header': true, 'table-header-clickable': $index() != 3}">
         <strong data-bind="text: title"></strong>
         <img data-bind="visible: asc() & active()" src="../../Content/images/down.png" />
         <img data-bind="visible: !asc() & active()" src="../../Content/images/up.png" />
@@ -52,3 +58,4 @@
 </script>
 
 <script type="text/javascript" src="../../Scripts/custom/gridControl.js"></script>
+<script type="text/javascript" src="../../Scripts/custom/usersViewModel.js"></script>

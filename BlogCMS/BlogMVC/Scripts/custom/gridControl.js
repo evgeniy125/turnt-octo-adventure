@@ -1,39 +1,4 @@
-﻿var viewModel = function () {
-    var self = this;
-    self.rows = [];
-    self.roles = [];
-    self.grid = {};
-
-    self.filters = [
-    { title: 'User name', filterPropertyName: "UserName", param: ko.observable("").extend({ rateLimit: { method: "notifyWhenChangesStop", timeout: 500 } }) },
-    { title: 'Create date', filterPropertyName: "CreateDate", param: ko.observable("").extend({ rateLimit: { method: "notifyWhenChangesStop", timeout: 500 } }) },
-    { title: 'Role name', filterPropertyName: "RoleName", param: ko.observable("").extend({ rateLimit: { method: "notifyWhenChangesStop", timeout: 500 } }) }];
-
-    self.headers = [
-    { title: 'USER NAME', sortPropertyName: 'UserName', asc: ko.observable(true), active: ko.observable(false) },
-    { title: 'CREATE DATE', sortPropertyName: 'CreateDate', asc: ko.observable(true), active: ko.observable(false) },
-    { title: 'ROLE NAME', sortPropertyName: 'RoleName', asc: ko.observable(true), active: ko.observable(false) },
-    { title: 'ACTIONS', sortPropertyName: null, asc: ko.observable(true), active: ko.observable(false) }];
-}
-
-$.when($.getJSON("../../user/getusers"), $.getJSON("../../user/getroles")).done(function (usersArgs, rolesArgs) {
-    var model = new viewModel();
-    var usersData = usersArgs[0];
-    $.each(usersData, function (key, val) {
-        val["RoleId"] = ko.observable(val["RoleId"]);
-        val["RoleName"] = ko.observable(val["RoleName"]);
-        val["CreateDate"] = new Date(parseInt(val["CreateDate"].substr(6))).toDateString();
-        val["SaveRequired"] = ko.observable(false);
-    });
-    var rows = usersData;
-    var rolesData = rolesArgs[0];
-    var roles = rolesData;
-    model.grid = new Grid(rows, model.headers, model.filters, roles);
-    ko.applyBindings(model);
-});
-
-
-function Grid(rows, headers, filters, roles) {
+﻿function Grid(rows, headers, filters, roles) {
     var self = this;
     self.roles = roles;
     self.rows = ko.observable(rows);
@@ -73,7 +38,50 @@ function Grid(rows, headers, filters, roles) {
 
     self.activeSort = ko.observable(function () { return 0; });
 
+    //Paging
+
+    self.page = ko.observable(1);
+
+    self.itemsPerPage = ko.observable(10);
+
+    self.pagesCount = ko.observable(self.rows().length / self.itemsPerPage());
+
+    self.pagesTotal = ko.computed(function () {
+            return Math.ceil(self.pagesCount() / self.itemsPerPage());
+    });
+
+    self.nextPage = function () {
+        self.page(self.page() + 1);
+    };
+
+    self.previousPage = function () {
+        self.page(self.page() - 1);
+    };
+
+    self.firstPage = function () {
+        self.page(1);
+    };
+
+    self.lastPage = function () {
+        self.page(self.pagesTotal());
+    };
+
+    self.previousPageEnabled = ko.computed(function () {
+        if (self.page() != 1) {
+            return true;
+        }
+        return false;
+    });
+
+    self.nextPageEnabled = ko.computed(function () {
+        if (self.page() != self.pagesTotal()) {
+            return true;
+        }
+        return false;
+    });
+
     self.filteredRows = ko.computed(function () {
+        self.page(1);
         var temp = self.rows();
         for (var i = 0; i < self.filters.length; i++) {
             var filter = self.filters[i];
@@ -88,7 +96,14 @@ function Grid(rows, headers, filters, roles) {
                 });
             }
         }
-        return temp.sort(self.activeSort());
+        return temp;
+    });
+
+    self.pagedAndSortedRows = ko.computed(function () {
+        var temp = self.filteredRows().sort(self.activeSort());
+        self.pagesCount(temp.length);
+        var indexOfFirstItemOnCurrentPage = (self.page() - 1) * (self.itemsPerPage());
+        return temp.slice(indexOfFirstItemOnCurrentPage, indexOfFirstItemOnCurrentPage + self.itemsPerPage());
     });
 
     //Read

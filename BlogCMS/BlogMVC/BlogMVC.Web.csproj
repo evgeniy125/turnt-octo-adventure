@@ -435,6 +435,7 @@
     <Content Include="Scripts\custom\gridControl.js" />
     <Content Include="Scripts\custom\usersKnockoutGrid.js" />
     <Content Include="Scripts\custom\usersKoGrid.js" />
+    <Content Include="Scripts\custom\usersViewModel.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
